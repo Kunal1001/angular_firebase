@@ -1,0 +1,13 @@
+<form [formGroup]="form">
+  <label for="name">Name</label>
+  <input type="text" formControlName="name" name="name" id="name" />
+  <!-- <input type="submit" (click)="onSubmit()" /> -->
+</form>
+
+<div>
+  <ol>
+    <li *ngFor="let item of data">
+      {{ item.name }}
+    </li>
+  </ol>
+</div>
