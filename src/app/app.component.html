@@ -1,13 +1,15 @@
-<form [formGroup]="form">
-  <label for="name">Name</label>
-  <input type="text" formControlName="name" name="name" id="name" />
-  <!-- <input type="submit" (click)="onSubmit()" /> -->
-</form>
+<app-header></app-header>
+<router-outlet></router-outlet>
+<app-footer></app-footer>
+<!-- 
+⁕we use firebase because it is the only backend service which interacts directly
+with the angular frontend.
+⁕In typescript every object must have a type and an interface which
+will act as its type.
+⁕ng s --cofiguration production {for production serve}.
+⁕header/footer in layout folder.
+⁕component in components folder.
+⁕page in pages folder.
 
-<div>
-  <ol>
-    <li *ngFor="let item of data">
-      {{ item.name }}
-    </li>
-  </ol>
-</div>
+new project with header,footer, home,about,contact
+firebase->collectin(unique name/ array of documents) & documents(docId/ documents are objects) -->
