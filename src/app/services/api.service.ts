@@ -1,15 +1,19 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collection } from '@angular/fire/firestore';
+import { Firestore, collection, getDocs } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  firestore: Firestore = inject(Firestore);
-  constructor() { }
+  firestore = inject(Firestore);
 
-  public getProducts(){
-    const itemCollection = collection(this.firestore, 'items');
+  public async getAllData() {
+    const colRef = collection(this.firestore,'product')
+    const snap = await getDocs(colRef);
+    return snap.docs.map((doc)=>({
+      ...doc.data(),
+      id: doc.id,
+    }))
   }
-}
+  }
