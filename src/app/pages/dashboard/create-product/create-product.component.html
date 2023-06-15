@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <form [formGroup]="form">
+
+    <div class="mb-3">
+        <label for="name" class="form-label">Product Name</label>
+        <input type="text" class="form-control" id="name" placeholder="" formControlName="name">
+        <div class="text-danger" *ngIf="name.touched && name.errors">
+            <p>invalid_name</p>
+          </div>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <input type="text" class="form-control" id="description" placeholder="Enter Description" formControlName="description">
+        <div class="text-danger" *ngIf="description.touched && description.errors">
+            <p>invalid_description</p>
+          </div>
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" class="form-control" id="price" placeholder="Enter Price" formControlName="price">
+        <div class="text-danger" *ngIf="price.touched && price.errors">
+            <p>invalid_price</p>
+          </div>
+      </div>
+   </form>
+   <button class="btn btn-outline-success" (click)="submit()">SUBMIT</button>
+</body>
+</html>
