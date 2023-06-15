@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collection, getDocs } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, deleteDoc, doc, getDocs } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -16,4 +16,11 @@ export class ApiService {
       id: doc.id,
     }))
   }
+  public async addProduct(data){
+    const colRef = collection(this.firestore,'product')
+    return await addDoc(colRef,data)
   }
+  public async delProduct(pid){
+    await deleteDoc(doc(this.firestore,"product",pid))
+  }
+}

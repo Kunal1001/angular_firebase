@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-create-product',
@@ -7,6 +9,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
   styleUrls: ['./create-product.component.scss']
 })
 export class CreateProductComponent {
+  constructor(public apiService:ApiService, public router:Router){}
   public form = new FormGroup({
     name:new FormControl("",[Validators.required,Validators.minLength(2)]),
     description:new FormControl("",[Validators.required,Validators.minLength(10)]),
@@ -21,8 +24,14 @@ export class CreateProductComponent {
   public get price():AbstractControl {
     return this.form.controls['price']
   }
-  public submit(){
+  public async submit(){
     if(this.form.invalid) return
-    console.log(this.form)
+    this.apiService.addProduct(this.form.value).then(()=>{
+      alert("Data Submitted Successfully")
+      console.log(this.form.value)
+      this.router.navigate(['']);
+    }).catch((err)=>{
+      alert(""+err)
+    })
   }
 }
